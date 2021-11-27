@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entiti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{8CD77BE6-8AFC-4F7B-990A-F2BAA3C58C15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BussinesLogic", "BussinesLogic\BussinesLogic.csproj", "{6B40FAC5-56DB-4A1A-A871-102EA5739809}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BussinesLogic", "BussinesLogic\BussinesLogic.csproj", "{6B40FAC5-56DB-4A1A-A871-102EA5739809}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{8AE9CC90-B78D-411A-BAAF-6CEB4AE86158}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{6B40FAC5-56DB-4A1A-A871-102EA5739809}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B40FAC5-56DB-4A1A-A871-102EA5739809}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B40FAC5-56DB-4A1A-A871-102EA5739809}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AE9CC90-B78D-411A-BAAF-6CEB4AE86158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AE9CC90-B78D-411A-BAAF-6CEB4AE86158}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AE9CC90-B78D-411A-BAAF-6CEB4AE86158}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AE9CC90-B78D-411A-BAAF-6CEB4AE86158}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
