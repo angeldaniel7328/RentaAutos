@@ -9,7 +9,7 @@ namespace Entities
         public string Modelo { get; set; }
         public string Marca { get; set; }
         public string Año { get; set; }
-        public double? CuotaDia { get; set; }
+        public double? Cuota { get; set; }
         public bool? Disponibilidad { get; set; }
         public string UrlFoto { get; set; }
 
