@@ -12,8 +12,8 @@ namespace Entities
 
         public enum EstadoRenta
         {
-            EN_RENTA = 1,
-            REVUELTO = 2
+            EN_PROCESO,
+            DEVUELTO
         }
     }
 }
