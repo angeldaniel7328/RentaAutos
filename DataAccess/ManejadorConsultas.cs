@@ -59,9 +59,8 @@ namespace DataAccess
                 parametros.ForEach((parametro) => cmd.Parameters.Add(parametro.Nombre, parametro.Tipo).Value = parametro.Valor);
                 datos = cmd.ExecuteReader();
                 while (datos.Read())
-                {
-                    for (int i = 0; i < datos.FieldCount; i++) registro.Add(datos.GetName(i), datos.GetValue(i));
-                }
+                    for (int i = 0; i < datos.FieldCount; i++) 
+                        registro.Add(datos.GetName(i), datos.GetValue(i));
             }
             catch (Exception)
             {
