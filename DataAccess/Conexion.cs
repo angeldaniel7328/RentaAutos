@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+
 namespace DataAccess
 {
     public class Conexion

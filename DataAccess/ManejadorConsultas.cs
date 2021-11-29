@@ -36,7 +36,7 @@ namespace DataAccess
             }
             catch (Exception)
             {
-                throw new ArgumentException("No se pudo insertar en la base de datos");
+                throw new ArgumentException("No se pudo realizar la operación en la base de datos");
             }
             finally
             {
@@ -65,7 +65,7 @@ namespace DataAccess
             }
             catch (Exception)
             {
-                throw new ArgumentException("No se pudo insertar en la base de datos");
+                throw new ArgumentException("No se pudo consultar en la base de datos");
             }
             finally
             {
@@ -91,7 +91,32 @@ namespace DataAccess
             }
             catch (Exception)
             {
-                throw new ArgumentException("No se pudo insertar en la base de datos");
+                throw new ArgumentException("No se pudo consultar en la base de datos");
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+            return set.Tables["Resultados"];
+        }
+
+        public static DataTable EjecutarConLlenado(string procedimiento)
+        {
+            Conexion conexion = new Conexion();
+            SqlConnection sqlConnection = new SqlConnection(conexion.CadenaConexion);
+            DataSet set = new DataSet();
+            try
+            {
+                sqlConnection.Open();
+                SqlCommand cmd = new SqlCommand(procedimiento, sqlConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(set, "Resultados");
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("No se pudo consultar en la base de datos");
             }
             finally
             {
