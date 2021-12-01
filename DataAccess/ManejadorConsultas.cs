@@ -36,7 +36,7 @@ namespace DataAccess
             }
             catch (Exception)
             {
-                throw new ArgumentException("No se pudo realizar la operación en la base de datos");
+                throw new ArgumentException("No se pudo insertar en la base de datos");
             }
             finally
             {
@@ -65,7 +65,7 @@ namespace DataAccess
             }
             catch (Exception)
             {
-                throw new ArgumentException("No se pudo consultar en la base de datos");
+                throw new ArgumentException("No se pudo insertar en la base de datos");
             }
             finally
             {
@@ -91,7 +91,7 @@ namespace DataAccess
             }
             catch (Exception)
             {
-                throw new ArgumentException("No se pudo consultar en la base de datos");
+                throw new ArgumentException("No se pudo insertar en la base de datos");
             }
             finally
             {
@@ -110,7 +110,6 @@ namespace DataAccess
                 sqlConnection.Open();
                 SqlCommand cmd = new SqlCommand(procedimiento, sqlConnection);
                 cmd.CommandType = CommandType.StoredProcedure;
-
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(set, "Resultados");
             }
@@ -125,4 +124,5 @@ namespace DataAccess
             return set.Tables["Resultados"];
         }
     }
+            
 }
