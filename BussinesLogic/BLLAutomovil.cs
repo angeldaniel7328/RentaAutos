@@ -13,9 +13,9 @@ namespace BussinesLogic
             {
                 return DALAutomovil.InsertarAutomovil(automovil);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new ArgumentException("Ocurrio un error " + e.Message);
+                throw new ArgumentException("Ocurrio un error " + ex.Message);
             }
         }
 
@@ -25,9 +25,9 @@ namespace BussinesLogic
             {
                 return DALAutomovil.ActualizarAutomovil(automovil);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new ArgumentException("Ocurrio un error " + e.Message);
+                throw new ArgumentException("Ocurrio un error " + ex.Message);
             }
         }
 
@@ -37,9 +37,9 @@ namespace BussinesLogic
             {
                 return DALAutomovil.EliminarAutomovil(int.Parse(idAutomovil));
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new ArgumentException("Ocurrio un error " + e.Message);
+                throw new ArgumentException("Ocurrio un error " + ex.Message);
             }
         }
 
@@ -52,9 +52,9 @@ namespace BussinesLogic
                 if (automovil.Equals(null))
                     throw new ArgumentException("El id buscado no existe en la base de datos");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new ArgumentException("Ocurrio un error " + e.Message);
+                throw new ArgumentException("Ocurrio un error " + ex.Message);
             }
             return automovil;
         }
@@ -66,9 +66,9 @@ namespace BussinesLogic
             {
                 automoviles = DALAutomovil.ConsultarAutomoviles(disponibilidad);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new ArgumentException("Ocurrio un error " + e.Message);
+                throw new ArgumentException("Ocurrio un error " + ex.Message);
             }
             return automoviles;
         }

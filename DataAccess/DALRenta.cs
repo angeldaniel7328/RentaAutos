@@ -87,14 +87,14 @@ namespace DataAccess
             return rentas;
         }
 
-        public static VORenta ConsultarRentaExtendidaPorId(int idRenta)
+        public static VORentaExtendida ConsultarRentaExtendidaPorId(int idRenta)
         {
             VORentaExtendida renta = null;
             try
             {
                 List<Parametro> parametros = new List<Parametro>();
                 parametros.Add(new Parametro("@IdRenta", SqlDbType.Int, idRenta));
-                Dictionary<string, object> datos = ManejadorConsultas.EjecutarLectura("SP_ConsultarRentaPorId", parametros);
+                Dictionary<string, object> datos = ManejadorConsultas.EjecutarLectura("SP_ConsultarRentaExtendidaPorId", parametros);
                 if (datos.Count > 0)
                 {
                     renta = new VORentaExtendida()
@@ -118,6 +118,21 @@ namespace DataAccess
                 throw new ArgumentException("No se pudo consultar en la base de datos");
             }
             return renta;
+        }
+
+        public static bool DevolverAutomovil(int idRenta)
+        {
+            try
+            {
+                List<Parametro> parametros = new List<Parametro>();
+                parametros.Add(new Parametro("@IdRenta", SqlDbType.Int, idRenta));
+                int rows = ManejadorConsultas.EjecutarSinConsulta("SP_DevolverAutomovil", parametros);
+                return (rows == 1);
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("No se pudo devolver el automovil en la base de datos");
+            }
         }
 
     }
