@@ -28,21 +28,24 @@ namespace DataAccess
 
         public static VOCliente ConsultarClientePorId(int idCliente)
         {
-            VOCliente cliente;
+            VOCliente cliente = null;
             try
             {
                 List<Parametro> parametros = new List<Parametro>();
                 parametros.Add(new Parametro("@IdCliente", SqlDbType.Int, idCliente));
                 Dictionary<string, object> datos = ManejadorConsultas.EjecutarLectura("SP_ConsultarClientePorId", parametros);
-                cliente = new VOCliente()
+                if (datos.Count > 0)
                 {
-                    IdCliente = (int)datos["idCliente"],
-                    Nombre = (string)datos["Nombre"],
-                    Telefono = (string)datos["Telefono"],
-                    Direccion = (string)datos["Direccion"],
-                    Correo = (string)datos["Correo"],
-                    UrlFoto = (string)datos["UrlFoto"]
-                };
+                    cliente = new VOCliente()
+                    {
+                        IdCliente = (int)datos["IdCliente"],
+                        Nombre = (string)datos["Nombre"],
+                        Telefono = (string)datos["Telefono"],
+                        Direccion = (string)datos["Direccion"],
+                        Correo = (string)datos["Correo"],
+                        UrlFoto = (string)datos["UrlFoto"]
+                    };
+                }       
             }
             catch (Exception)
             {
@@ -56,17 +59,9 @@ namespace DataAccess
             List<VOCliente> clientes = new List<VOCliente>();
             try
             {
-                DataTable datos = ManejadorConsultas.EjecutarConLlenado("SP_ConsultarPersonas");
+                DataTable datos = ManejadorConsultas.EjecutarConLlenado("SP_ConsultarClientes");
                 foreach (DataRow registro in datos.Rows)
-                    clientes.Add(new VOCliente()
-                    {
-                        IdCliente = (int)registro["IdCliente"],
-                        Nombre = (string)registro["Nombre"],
-                        Telefono = (string)registro["Telefono"],
-                        Direccion = (string)registro["Direccion"],
-                        Correo = (string)registro["Correo"],
-                        UrlFoto = (string)registro["UrlFoto"]
-                    });
+                    clientes.Add(new VOCliente(registro));
             }
             catch (Exception)
             {
@@ -100,7 +95,7 @@ namespace DataAccess
             try
             {
                 List<Parametro> parametros = new List<Parametro>();
-                parametros.Add(new Parametro("@IdPersona", SqlDbType.Int, idCliente));
+                parametros.Add(new Parametro("@IdCliente", SqlDbType.Int, idCliente));
                 int rows = ManejadorConsultas.EjecutarSinConsulta("SP_EliminarCliente", parametros);
                 return (rows != 0);
             }

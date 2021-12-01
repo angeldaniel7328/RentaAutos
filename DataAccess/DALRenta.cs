@@ -13,7 +13,8 @@ namespace DataAccess
             {
                 List<Parametro> parametros = new List<Parametro>();
                 parametros.Add(new Parametro("@FechaHora", SqlDbType.DateTime, renta.FechaHora));
-                parametros.Add(new Parametro("@Estado", SqlDbType.VarChar, renta.Estado));
+                parametros.Add(new Parametro("@Plazo", SqlDbType.Int, renta.Plazo));
+                parametros.Add(new Parametro("@CuotaTotal", SqlDbType.Decimal, renta.CuotaTotal));
                 parametros.Add(new Parametro("@IdAutomovil", SqlDbType.Int, renta.IdAutomovil));
                 parametros.Add(new Parametro("@IdCliente", SqlDbType.Int, renta.IdCliente));
                 int rows = ManejadorConsultas.EjecutarSinConsulta("SP_InsertarRenta", parametros);
@@ -27,20 +28,25 @@ namespace DataAccess
 
         public static VORenta ConsultarRentaPorId(int idRenta)
         {
-            VORenta renta;
+            VORenta renta = null;
             try
             {
                 List<Parametro> parametros = new List<Parametro>();
                 parametros.Add(new Parametro("@IdRenta", SqlDbType.Int, idRenta));
                 Dictionary<string, object> datos = ManejadorConsultas.EjecutarLectura("SP_ConsultarRentaPorId", parametros);
-                renta = new VORenta()
+                if (datos.Count > 0)
                 {
-                    IdRenta = (int)datos["IdRenta"],
-                    FechaHora = (DateTime?)datos["FechaHora"],
-                    Estado = (string)datos["Estado"],
-                    IdAutomovil = (int?)datos["IdAutomovil"],
-                    IdCliente = (int?)datos["IdCliente"]
-                };
+                    renta = new VORenta()
+                    {
+                        IdRenta = (int)datos["IdRenta"],
+                        FechaHora = (DateTime?)datos["FechaHora"],
+                        Completada = (bool?)datos["Completada"],
+                        Plazo = (int?)datos["Plazo"],
+                        CuotaTotal = double.Parse(datos["CuotaTotal"].ToString()),
+                        IdAutomovil = (int?)datos["IdAutomovil"],
+                        IdCliente = (int?)datos["IdCliente"]
+                    };
+                }
             }
             catch (Exception)
             {
@@ -49,29 +55,69 @@ namespace DataAccess
             return renta;
         }
 
-        public static List<VORenta> ConsultarRentasPorEstado(string estado)
+        public static List<VORenta> ConsultarRentas()
         {
             List<VORenta> rentas = new List<VORenta>();
             try
             {
-                List<Parametro> parametros = new List<Parametro>();
-                parametros.Add(new Parametro("@Estado", SqlDbType.VarChar, estado));
-                DataTable datos = ManejadorConsultas.EjecutarConLlenado("SP_ConsultarRentasPorEstado", parametros);
+                DataTable datos = ManejadorConsultas.EjecutarConLlenado("SP_ConsultarRentas");
                 foreach (DataRow registro in datos.Rows)
-                    rentas.Add(new VORenta()
-                    {
-                        IdRenta = (int)registro["IDRenta"],
-                        FechaHora = (DateTime?)registro["FechaHora"],
-                        Estado = (string)registro["Estado"],
-                        IdAutomovil = (int?)registro["IdAutomovil"],
-                        IdCliente = (int?)registro["IdCliente"]
-                    });
+                    rentas.Add(new VORenta(registro));
             }
             catch (Exception)
             {
                 throw new ArgumentException("No se pudo consultar en la base de datos");
             }
             return rentas;
+        }
+
+        public static List<VORentaExtendida> ConsultarRentasExtendidas()
+        {
+            List<VORentaExtendida> rentas = new List<VORentaExtendida>();
+            try
+            {
+                DataTable datos = ManejadorConsultas.EjecutarConLlenado("SP_ConsultarRentasExtendidas");
+                foreach (DataRow registro in datos.Rows)
+                    rentas.Add(new VORentaExtendida(registro));
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("No se pudo consultar en la base de datos");
+            }
+            return rentas;
+        }
+
+        public static VORenta ConsultarRentaExtendidaPorId(int idRenta)
+        {
+            VORentaExtendida renta = null;
+            try
+            {
+                List<Parametro> parametros = new List<Parametro>();
+                parametros.Add(new Parametro("@IdRenta", SqlDbType.Int, idRenta));
+                Dictionary<string, object> datos = ManejadorConsultas.EjecutarLectura("SP_ConsultarRentaPorId", parametros);
+                if (datos.Count > 0)
+                {
+                    renta = new VORentaExtendida()
+                    {
+                        IdRenta = (int)datos["IdRenta"],
+                        FechaHora = (DateTime?)datos["FechaHora"],
+                        Completada = (bool?)datos["Completada"],
+                        Plazo = (int?)datos["Plazo"],
+                        CuotaTotal = double.Parse(datos["CuotaTotal"].ToString()),
+                        ModeloAutomovil = (string)datos["ModeloAutomovil"],
+                        UrlFotoAutomovil = (string)datos["UrlFotoAutomovil"],
+                        NombreCliente = (string)datos["NombreCliente"],
+                        UrlFotoCliente = (string)datos["UrlFotoCliente"],
+                        IdAutomovil = (int?)datos["IdAutomovil"],
+                        IdCliente = (int?)datos["IdCliente"]
+                    };
+                }
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("No se pudo consultar en la base de datos");
+            }
+            return renta;
         }
 
     }

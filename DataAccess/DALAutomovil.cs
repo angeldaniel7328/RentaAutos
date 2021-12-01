@@ -28,22 +28,25 @@ namespace DataAccess
 
         public static VOAutomovil ConsultarAutomovilPorId(int idAutomovil)
         {
-            VOAutomovil automovil;
+            VOAutomovil automovil = null;
             try
             {
                 List<Parametro> parametros = new List<Parametro>();
                 parametros.Add(new Parametro("@IdAutomovil", SqlDbType.Int, idAutomovil));
                 Dictionary<string, object> datos = ManejadorConsultas.EjecutarLectura("SP_ConsultarAutomovilPorId", parametros);
-                automovil = new VOAutomovil()
+                if (datos.Count > 0)
                 {
-                    IdAutomovil = (int)datos["IdAutomovil"],
-                    Matricula = (string)datos["Matricula"],
-                    Modelo = (string)datos["Modelo"],
-                    Marca = (string)datos["Marca"],
-                    Cuota = (double)datos["Cuota"],
-                    Disponibilidad = (bool)datos["Disponibilidad"],
-                    UrlFoto = (string)datos["UrlFoto"]
-                };
+                    automovil = new VOAutomovil()
+                    {
+                        IdAutomovil = (int)datos["IdAutomovil"],
+                        Matricula = (string)datos["Matricula"],
+                        Modelo = (string)datos["Modelo"],
+                        Marca = (string)datos["Marca"],
+                        Cuota = double.Parse(datos["Cuota"].ToString()),
+                        Disponibilidad = (bool)datos["Disponibilidad"],
+                        UrlFoto = (string)datos["UrlFoto"]
+                    };
+                }    
             }
             catch (Exception)
             {
@@ -52,23 +55,18 @@ namespace DataAccess
             return automovil;
         }
 
-        public static List<VOAutomovil> ConsultarAutomoviles()
+        public static List<VOAutomovil> ConsultarAutomoviles(bool? disponibilidad)
         {
             List<VOAutomovil> automoviles = new List<VOAutomovil>();
             try
             {
-                DataTable datos = ManejadorConsultas.EjecutarConLlenado("SP_ConsultarAutomoviles");
+                List<Parametro> parametros = new List<Parametro>();
+                parametros.Add(new Parametro("@Disponibilidad", SqlDbType.Bit, disponibilidad));
+                DataTable datos = ManejadorConsultas.EjecutarConLlenado("SP_ConsultarAutomoviles", parametros);
                 foreach (DataRow registro in datos.Rows)
-                    automoviles.Add(new VOAutomovil()
-                    {
-                        IdAutomovil = (int)registro["IdAutomovil"],
-                        Matricula = (string)registro["Matricula"],
-                        Modelo = (string)registro["Modelo"],
-                        Marca = (string)registro["Marca"],
-                        Cuota = (double)registro["Cuota"],
-                        Disponibilidad = (bool)registro["Disponibilidad"],
-                        UrlFoto = (string)registro["UrlFoto"]
-                    });
+                {
+                    automoviles.Add(new VOAutomovil(registro));
+                }         
             }
             catch (Exception)
             {
@@ -77,7 +75,7 @@ namespace DataAccess
             return automoviles;
         }
 
-        public static bool ActualizarAutomovil(VOAutomovil automovil)
+    public static bool ActualizarAutomovil(VOAutomovil automovil)
         {
             try
             {
@@ -87,8 +85,8 @@ namespace DataAccess
                 parametros.Add(new Parametro("@Modelo", SqlDbType.VarChar, automovil.Modelo));
                 parametros.Add(new Parametro("@Marca", SqlDbType.VarChar, automovil.Marca));
                 parametros.Add(new Parametro("@Cuota", SqlDbType.Decimal, automovil.Cuota));
-                parametros.Add(new Parametro("@Disponibilidad", SqlDbType.Bit, automovil.Disponibilidad));
                 parametros.Add(new Parametro("@UrlFoto", SqlDbType.VarChar, automovil.UrlFoto));
+                parametros.Add(new Parametro("@Disponibilidad", SqlDbType.Bit, automovil.Disponibilidad));
                 int rows = ManejadorConsultas.EjecutarSinConsulta("SP_ActualizarAutomovil", parametros);
                 return (rows != 0);
             }
