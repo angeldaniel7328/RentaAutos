@@ -124,5 +124,5 @@ namespace DataAccess
             return set.Tables["Resultados"];
         }
     }
-            
+
 }

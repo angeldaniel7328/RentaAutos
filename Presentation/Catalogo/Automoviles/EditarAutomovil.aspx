@@ -53,7 +53,7 @@
         <div class="row form-group">
             <div class="col-md-3" style="text-align: center;">
                 <label for="<%=SubirImagen.ClientID %>">Foto:</label>
-                <asp:Image ID="imgFotoCliente" Width="200" Height="200" runat="server" />
+                <asp:Image ID="imgFotoAutomovil" Width="200" Height="200" runat="server" />
                 <label id="lblUrlFoto" runat="server"></label>
             </div>
         </div>

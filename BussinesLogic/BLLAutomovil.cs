@@ -8,7 +8,7 @@ namespace BussinesLogic
     public static class BLLAutomovil
     {
         public static bool InsertarAutomovil(VOAutomovil automovil)
-        { 
+        {
             try
             {
                 return DALAutomovil.InsertarAutomovil(automovil);

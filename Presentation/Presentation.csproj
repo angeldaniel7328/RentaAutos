@@ -272,6 +272,16 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BussinesLogic\BussinesLogic.csproj">
+      <Project>{45053a6d-cb92-494a-9c63-dce1cf8ca3ed}</Project>
+      <Name>BussinesLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{d5c44a13-bfa7-497a-9de2-49b7ed9a7275}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -46,7 +46,7 @@ namespace DataAccess
                         Disponibilidad = (bool)datos["Disponibilidad"],
                         UrlFoto = (string)datos["UrlFoto"]
                     };
-                }    
+                }
             }
             catch (Exception)
             {
@@ -66,7 +66,7 @@ namespace DataAccess
                 foreach (DataRow registro in datos.Rows)
                 {
                     automoviles.Add(new VOAutomovil(registro));
-                }         
+                }
             }
             catch (Exception)
             {
@@ -75,7 +75,7 @@ namespace DataAccess
             return automoviles;
         }
 
-    public static bool ActualizarAutomovil(VOAutomovil automovil)
+        public static bool ActualizarAutomovil(VOAutomovil automovil)
         {
             try
             {

@@ -36,7 +36,7 @@ namespace Entities
         public string NombreCliente { get; set; }
         public string UrlFotoCliente { get; set; }
 
-        public VORentaExtendida(DataRow registro): base(registro)
+        public VORentaExtendida(DataRow registro) : base(registro)
         {
             ModeloAutomovil = (string)registro["ModeloAutomovil"];
             UrlFotoAutomovil = (string)registro["UrlFotoAutomovil"];

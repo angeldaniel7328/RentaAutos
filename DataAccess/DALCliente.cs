@@ -45,7 +45,7 @@ namespace DataAccess
                         Correo = (string)datos["Correo"],
                         UrlFoto = (string)datos["UrlFoto"]
                     };
-                }       
+                }
             }
             catch (Exception)
             {
