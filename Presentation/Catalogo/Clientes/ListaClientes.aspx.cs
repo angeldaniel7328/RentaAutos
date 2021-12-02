@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BussinesLogic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,26 @@ namespace Presentation.Catalogo.Clientes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                CargarGrid();
+            }
+        }
 
+        private void CargarGrid()
+        {
+            gvClientes.DataSource = BLLCliente.ConsultarClientes();
+            gvClientes.DataBind();
+        }
+
+        protected void gvClientes_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Select")
+            {
+                var index = int.Parse(e.CommandArgument.ToString());
+                var idCliente = gvClientes.DataKeys[index].Values["IdCliente"].ToString();
+                Response.Redirect("EditarCliente.aspx?id=" + idCliente);
+            }
         }
     }
 }

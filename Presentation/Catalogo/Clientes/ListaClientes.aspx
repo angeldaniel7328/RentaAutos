@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListaClientes.aspx.cs" Inherits="Presentation.Catalogo.Automoviles.ListaClientes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListaClientes.aspx.cs" Inherits="Presentation.Catalogo.Clientes.ListaClientes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <style>
         .fotogv {
@@ -12,7 +12,7 @@
         </div>
         <div class ="row col-md-10 col-md-offset-1">
             <asp:GridView ID="gvClientes" runat="server" AutoGenerateColumns="false"
-                DataKeyNames="IdCliente" OnRowCommand="gvClientes_RowCommand">
+                DataKeyNames="IdCliente" OnRowComman="gvClientes_RowCommand">
                 <Columns>
                     <asp:ImageField HeaderText="Foto" ReadOnly="true"
                         DataImageUrlField="UrlFoto" ControlStyle-Width="110px"

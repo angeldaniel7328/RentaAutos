@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Presentation.Catalogo.Automoviles
+namespace Presentation.Catalogo.Clientes
 {
 
 
