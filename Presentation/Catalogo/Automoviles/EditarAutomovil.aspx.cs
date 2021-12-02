@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -22,19 +23,18 @@ namespace Presentation.Catalogo.Automoviles
                 }
                 else
                 {
-                    bool disponibilidad = true;
                     string idAutomovil = Request.QueryString["Id"].ToString();
                     VOAutomovil automovil = BLLAutomovil.ConsultarAutomovilPorId(idAutomovil);
                     CargarFormulario(automovil);
-                    disponibilidad = (bool)automovil.Disponibilidad;
+                    bool disponibilidad = (bool)automovil.Disponibilidad;
                     if (disponibilidad)
                     {
-                        lblAutomovil.ForeColor = System.Drawing.Color.Green;
+                        lblAutomovil.ForeColor = Color.Green;
                         btnEliminar.Visible = true;
                     }
                     else
                     {
-                        lblAutomovil.ForeColor = System.Drawing.Color.Red;
+                        lblAutomovil.ForeColor = Color.Red;
                         btnEliminar.Visible = false;
                     }
                 }
