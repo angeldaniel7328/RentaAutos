@@ -19,7 +19,7 @@ namespace BussinesLogic
             }
         }
 
-        public static bool Actualizarcliente(VOCliente cliente)
+        public static bool ActualizarCliente(VOCliente cliente)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace BussinesLogic
             }
         }
 
-        public static bool Eliminarcliente(string idCliente)
+        public static bool EliminarCliente(string idCliente)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace BussinesLogic
             }
         }
 
-        public static VOCliente ConsultarclientePorId(string idCliente)
+        public static VOCliente ConsultarClientePorId(string idCliente)
         {
             VOCliente cliente;
             try
@@ -59,7 +59,7 @@ namespace BussinesLogic
             return cliente;
         }
 
-        public static List<VOCliente> Consultarclientes()
+        public static List<VOCliente> ConsultarClientes()
         {
             List<VOCliente> clientes;
             try
