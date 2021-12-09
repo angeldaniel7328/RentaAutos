@@ -4,7 +4,7 @@
 
 <html lang="es">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> Renta de Automoviles</title>
@@ -20,7 +20,7 @@
 <body>
     <form runat="server">
         <asp:ScriptManager runat="server">
-            <Scripts>
+            <scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
@@ -36,8 +36,12 @@
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
                 <%--Site Scripts--%>
-            </Scripts>
+            </scripts>
         </asp:ScriptManager>
+
+        <link href="/Content/jquery.datetimepicker.css" rel="stylesheet" />
+        <script src="/Scripts/moment-with-locales.js"></script>
+        <script src="/Scripts/jquery.datetimepicker.full.min.js"></script>
 
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -49,19 +53,29 @@
                     </button>
                     <a class="navbar-brand" runat="server" href="~/">Renta Automoviles</a>
                 </div>
-                
+
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Inicio</a></li>
+
                         <li class="dropdown">
-                            <a runat="server" href="~/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catálogos<span class="caret"></span>
-                            </a>
+                            <a runat="server" href="~/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catálogos<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a runat="server" href="~/Catalogo/Automoviles/AltaAutomovil.aspx">Alta Automovil</a></li>
+                                <li><a runat="server" href="~/Catalogo/Automoviles/ListaAutomoviles.aspx">Lista Automoviles</a></li> 
+                                <li role="separator" class="divider"></li>
                                 <li><a runat="server" href="~/Catalogo/Clientes/AltaCliente.aspx">Alta Cliente</a></li>
-                                <li class="separator" role="separator"></li>
-                                <li><a runat="server" href="~/Catalogo/Automoviles/ListaAutomoviles.aspx">Lista Automoviles</a></li>
                                 <li><a runat="server" href="~/Catalogo/Clientes/ListaClientes.aspx">Lista Clientes</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a runat="server" href="~/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Rentas<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a runat="server" href="~/Rentas/AltaRenta.aspx">Alta Renta</a></li>
+                                <li><a runat="server" href="~/Rentas/AutomovilesRentados.aspx">Automoviles en Renta</a></li>
+                                <li><a runat="server" href="~/Rentas/AutomovilesDevueltos.aspx">Automoviles Devueltos</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -74,7 +88,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> Malecón Costero, John Spark #4017-Local 2</p>
+                <p>&copy; <%: DateTime.Now %> Malecón Costero, John Spark #4017-Local 2</p>
             </footer>
         </div>
 
