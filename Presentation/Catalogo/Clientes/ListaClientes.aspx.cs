@@ -8,14 +8,12 @@ using System.Web.UI.WebControls;
 
 namespace Presentation.Catalogo.Clientes
 {
-    public partial class ListaClientes : System.Web.UI.Page
+    public partial class ListaClientes : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {
                 CargarGrid();
-            }
         }
 
         private void CargarGrid()

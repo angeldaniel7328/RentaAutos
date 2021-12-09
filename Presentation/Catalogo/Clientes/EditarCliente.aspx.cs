@@ -23,8 +23,8 @@ namespace Presentation.Catalogo.Clientes
                 }
                 else
                 {
-                    string idCliente = Request.QueryString["Id"].ToString();
-                    VOCliente cliente = BLLCliente.ConsultarClientePorId(idCliente);
+                    var idCliente = Request.QueryString["Id"].ToString();
+                    var cliente = BLLCliente.ConsultarClientePorId(idCliente);
                     CargarFormulario(cliente);
                     lblCliente.ForeColor = Color.Green;
                     btnEliminar.Visible = true;
@@ -35,11 +35,11 @@ namespace Presentation.Catalogo.Clientes
         private void CargarFormulario(VOCliente cliente)
         {
             lblCliente.Text = cliente.IdCliente.ToString();
-            txtNombre.Text = cliente.Nombre.ToString();
-            txtTelefono.Text = cliente.Telefono.ToString();
-            txtDireccion.Text = cliente.Direccion.ToString();
-            txtCorreo.Text = cliente.Correo.ToString();
-            lblUrlFoto.InnerText = cliente.UrlFoto.ToString();
+            txtNombre.Text = cliente.Nombre;
+            txtTelefono.Text = cliente.Telefono;
+            txtDireccion.Text = cliente.Direccion;
+            txtCorreo.Text = cliente.Correo;
+            lblUrlFoto.InnerText = cliente.UrlFoto;
             imgFotoCliente.ImageUrl = cliente.UrlFoto;
         }
 
@@ -53,7 +53,7 @@ namespace Presentation.Catalogo.Clientes
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), $"Mensaje de error",
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), $"Mensaje de error", 
                     "alert(Se registró un error al realizar la operación " + ex.Message + ");", true);
             }
         }
@@ -64,7 +64,7 @@ namespace Presentation.Catalogo.Clientes
             {
                 VOCliente cliente = new VOCliente
                 {
-                    IdCliente = int.Parse(lblCliente.Text),
+                    IdCliente = int.Parse(lblCliente.Text.ToString()),
                     Nombre = txtNombre.Text,
                     Telefono = txtTelefono.Text,
                     Direccion = txtDireccion.Text,
@@ -115,7 +115,7 @@ namespace Presentation.Catalogo.Clientes
             txtCorreo.Text = string.Empty;
             lblUrlFoto.InnerText = string.Empty;
             imgFotoCliente.ImageUrl = string.Empty;
-            btnGuardar.Visible = true;
+            btnGuardar.Visible = false;
         }
 
     }

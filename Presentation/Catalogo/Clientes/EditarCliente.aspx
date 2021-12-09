@@ -7,39 +7,41 @@
                 <asp:Label ID="lblCliente" runat="server" Text=""></asp:Label></h4>
             <hr />
         </div>
+        
         <div class="row form-group">
             <label for="<%=txtNombre.ClientID %>">Nombre:</label>
             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Nombre"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvtxtNombre" ValidationGroup="Guardar" runat="server" CssClass="text-danger" ControlToValidate="txtNombre" ErrorMessage="Nombre de la persona requerido"></asp:RequiredFieldValidator>
         </div>
 
         <div class="row form-group">
-            <label for="<%=txtTelefono.ClientID %>">Telfono:</label>
-            <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" placeholder="Telefono"></asp:TextBox>
+            <label for="<%=txtDireccion.ClientID %>">Dirección:</label>
+            <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" placeholder="Calle #. Colonia. CP"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvtxtDireccion" ValidationGroup="Guardar" runat="server" CssClass="text-danger" ControlToValidate="txtDireccion" ErrorMessage="Dirección de la persona requerida"></asp:RequiredFieldValidator>
+        </div>
+
+        <div class="row form-group">
+            <label for="<%=txtTelefono.ClientID %>">Teléfono:</label>
+            <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" placeholder="(000) 000-0000"></asp:TextBox>
             <div class="col-md-12" style="margin-bottom: 20px;">
                 <div style="position: absolute; top: 0; left: 0">
-                    <asp:RequiredFieldValidator ID="rfvtxtTelefono" ValidationGroup="Guardar" runat="server" CssClass="text-danger" ControlToValidate="txtTelefono" ErrorMessage="Telefono requerido"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvtxtTelefono" ValidationGroup="Guardar" runat="server" CssClass="text-danger" ControlToValidate="txtTelefono" ErrorMessage="Teléfono de la persona requerido"></asp:RequiredFieldValidator>
                 </div>
                 <div style="position: absolute; top: 0; left: 0">
-                    <asp:RegularExpressionValidator ID="revtxtTelefono" runat="server" CssClass="text-danger" ControlToValidate="txtTelefono" ValidationExpression="^[0-9]{10}$" ErrorMessage="El formato del telefono no es valido"></asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="revtxtTelefono" runat="server" CssClass="text-danger" ControlToValidate="txtTelefono" ValidationExpression="^\(\d{3}\) \d{3}-\d{4}$" ErrorMessage="El formato de teléfono es (000) 000-0000"></asp:RegularExpressionValidator>
                 </div>
             </div>
         </div>
 
         <div class="row form-group">
-            <label for="<%=txtDireccion.ClientID %>">Dirección:</label>
-            <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" placeholder="Direccion"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="rfvtxtDireccion" ValidationGroup="Guardar" runat="server" CssClass="text-danger" ControlToValidate="txtDireccion" ErrorMessage="Dirección del cliente requerido"></asp:RequiredFieldValidator>
-        </div>
-
-        <div class="row form-group">
             <label for="<%=txtCorreo.ClientID %>">Correo:</label>
-            <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" placeholder="Correo"></asp:TextBox>
+            <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" placeholder="nombre@host.com"></asp:TextBox>
             <div class="col-md-12" style="margin-bottom: 20px;">
                 <div style="position: absolute; top: 0; left: 0">
-                    <asp:RequiredFieldValidator ID="rfvtxtCorreo" ValidationGroup="Guardar" runat="server" CssClass="text-danger" ControlToValidate="txtCorreo" ErrorMessage="Correo requerido"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvtxtCorreo" ValidationGroup="Guardar" runat="server" CssClass="text-danger" ControlToValidate="txtCorreo" ErrorMessage="Correo de la persona requerido"></asp:RequiredFieldValidator>
                 </div>
                 <div style="position: absolute; top: 0; left: 0">
-                    <asp:RegularExpressionValidator ID="revtxtCuota" runat="server" CssClass="text-danger" ControlToValidate="txtCorreo" ValidationExpression="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" ErrorMessage="El formato del correo no es valido"></asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="revtxtCorreo" runat="server" CssClass="text-danger" ControlToValidate="txtCorreo" ValidationExpression="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" ErrorMessage="El formato de correo es nombre@host.com"></asp:RegularExpressionValidator>
                 </div>
             </div>
         </div>

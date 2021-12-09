@@ -10,18 +10,15 @@ using System.Web.UI.WebControls;
 
 namespace Presentation.Catalogo.Clientes
 {
-    public partial class AltaCliente : System.Web.UI.Page
+    public partial class AltaCliente : Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
+        protected void Page_Load(object sender, EventArgs e) { }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
-                VOCliente cliente = new VOCliente
+                var cliente = new VOCliente
                 {
                     Nombre = txtNombre.Text,
                     Telefono = txtTelefono.Text,
@@ -72,7 +69,7 @@ namespace Presentation.Catalogo.Clientes
             txtCorreo.Text = string.Empty;
             lblUrlFoto.InnerText = string.Empty;
             imgFotoCliente.ImageUrl = string.Empty;
-            btnGuardar.Visible = true;
+            btnGuardar.Visible = false;
         }
     }
 }
