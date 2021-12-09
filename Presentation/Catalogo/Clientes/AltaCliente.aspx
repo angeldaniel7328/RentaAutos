@@ -2,12 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
         <div class="row">
-            <h3>Alta Clientes</h3>
+            <h3>Alta Cliente</h3>
             <hr />
         </div>
 
         <div class="row form-group">
-            <label for="<%=txtNombre.ClientID %>">Nombre:</label>
+            <label for="<%=txtNombre.ClientID %>">Nombre del cliente:</label>
             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Nombre"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvtxtNombre" ValidationGroup="Guardar" runat="server" CssClass="text-danger" ControlToValidate="txtNombre" ErrorMessage="Nombre del cliente requerido"></asp:RequiredFieldValidator>
         </div>
@@ -19,20 +19,20 @@
         </div>
 
         <div class="row form-group">
-            <label for="<%=txtTelefono.ClientID %>">Teléfono:</label>
+            <label for="<%=txtTelefono.ClientID %>">Número de teléfono:</label>
             <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" placeholder="(000) 000-0000"></asp:TextBox>
             <div class="col-md-12" style="margin-bottom: 20px;">
                 <div style="position: absolute; top: 0; left: 0">
                     <asp:RequiredFieldValidator ID="rfvtxtTelefono" ValidationGroup="Guardar" runat="server" CssClass="text-danger" ControlToValidate="txtTelefono" ErrorMessage="Teléfono de la persona requerido"></asp:RequiredFieldValidator>
                 </div>
                 <div style="position: absolute; top: 0; left: 0">
-                    <asp:RegularExpressionValidator ID="revtxtTelefono" runat="server" CssClass="text-danger" ControlToValidate="txtTelefono" ValidationExpression="^\(\d{3}\) \d{3}-\d{4}$" ErrorMessage="El formato de teléfono es (000) 000-0000"></asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="revtxtTelefono" runat="server" CssClass="text-danger" ControlToValidate="txtTelefono" ValidationExpression="^[0-9]{10}$" ErrorMessage="El formato de teléfono debe contener 10 digitos"></asp:RegularExpressionValidator>
                 </div>
             </div>
         </div>
 
         <div class="row form-group">
-            <label for="<%=txtCorreo.ClientID %>">Correo:</label>
+            <label for="<%=txtCorreo.ClientID %>">Correo eléctronico:</label>
             <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" placeholder="nombre@host.com"></asp:TextBox>
             <div class="col-md-12" style="margin-bottom: 20px;">
                 <div style="position: absolute; top: 0; left: 0">
