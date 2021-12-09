@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Entities;
 using DataAccess;
+using System.Linq;
 
 namespace BussinesLogic
 {
@@ -55,6 +56,21 @@ namespace BussinesLogic
             try
             {
                 rentas = DALRenta.ConsultarRentasExtendidas();
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Ocurrio un error " + ex.Message);
+            }
+            return rentas;
+        }
+
+        public static List<VORentaExtendida> ConsultarRentasExtendidas(bool completadas)
+        {
+            List<VORentaExtendida> rentas = new List<VORentaExtendida>();
+            try
+            {
+                rentas = ConsultarRentasExtendidas();
+                rentas = (from renta in rentas where renta.Completada == completadas select renta).ToList();
             }
             catch (Exception ex)
             {
