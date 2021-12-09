@@ -1,6 +1,6 @@
-CREATE DATABASE BDRentaAutos
+CREATE DATABASE [DBRentaAutos]
 GO
-USE [BDRentaAutos]
+USE [DBRentaAutos]
 GO
 
 SET ANSI_NULLS ON
@@ -363,5 +363,10 @@ AS
 BEGIN
 	INSERT INTO Rentas(FechaHora, Plazo, CuotaTotal, Completada, IdAutomovil, IdCliente)
 	VALUES(@FechaHora,@Plazo, @CuotaTotal, 0, @IdAutomovil, @IdCliente)
+
+	UPDATE Automoviles
+	SET
+	Disponibilidad=0
+	WHERE IdAutomovil=@IdAutomovil
 END
 GO
