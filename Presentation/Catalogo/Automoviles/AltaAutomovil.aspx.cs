@@ -12,10 +12,7 @@ namespace Presentation.Catalogo.Automoviles
 {
     public partial class AltaAutomovil : Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            
-        }
+        protected void Page_Load(object sender, EventArgs e) { }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
@@ -52,7 +49,7 @@ namespace Presentation.Catalogo.Automoviles
                     lblUrlFoto.InnerText = "Archivo no valido";
                     return;
                 }
-                var path = Server.MapPath("~/Imagenes/Autmoviles/");
+                var path = Server.MapPath("~/Imagenes/Automoviles/");
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
@@ -73,7 +70,7 @@ namespace Presentation.Catalogo.Automoviles
             txtCuota.Text = string.Empty;
             lblUrlFoto.InnerText = string.Empty;
             imgFotoAutomovil.ImageUrl = string.Empty;
-            btnGuardar.Visible = true;
+            btnGuardar.Visible = false;
         }
     }
 }

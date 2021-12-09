@@ -27,16 +27,8 @@ namespace Presentation.Catalogo.Automoviles
                     VOAutomovil automovil = BLLAutomovil.ConsultarAutomovilPorId(idAutomovil);
                     CargarFormulario(automovil);
                     bool disponibilidad = (bool)automovil.Disponibilidad;
-                    if (disponibilidad)
-                    {
-                        lblAutomovil.ForeColor = Color.Green;
-                        btnEliminar.Visible = true;
-                    }
-                    else
-                    {
-                        lblAutomovil.ForeColor = Color.Red;
-                        btnEliminar.Visible = false;
-                    }
+                    lblAutomovil.ForeColor = disponibilidad ? Color.Green: Color.Red;
+                    btnEliminar.Visible = disponibilidad;
                 }
             }
         }
@@ -44,11 +36,11 @@ namespace Presentation.Catalogo.Automoviles
         private void CargarFormulario(VOAutomovil automovil)
         {
             lblAutomovil.Text = automovil.IdAutomovil.ToString();
-            txtMatricula.Text = automovil.Matricula.ToString();
-            txtModelo.Text = automovil.Modelo.ToString();
-            txtMarca.Text = automovil.Marca.ToString();
+            txtMatricula.Text = automovil.Matricula;
+            txtModelo.Text = automovil.Modelo;
+            txtMarca.Text = automovil.Marca;
             txtCuota.Text = automovil.Cuota.ToString();
-            lblUrlFoto.InnerText = automovil.UrlFoto.ToString();
+            lblUrlFoto.InnerText = automovil.UrlFoto;
             imgFotoAutomovil.ImageUrl = automovil.UrlFoto;
         }
 
@@ -125,7 +117,7 @@ namespace Presentation.Catalogo.Automoviles
             txtCuota.Text = string.Empty;
             lblUrlFoto.InnerText = string.Empty;
             imgFotoAutomovil.ImageUrl = string.Empty;
-            btnGuardar.Visible = true;
+            btnGuardar.Visible = false;
         }
 
     }

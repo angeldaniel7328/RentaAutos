@@ -14,9 +14,7 @@ namespace Presentation.Catalogo.Automoviles
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {
                 CargarGrid();
-            }
         }
 
         private void CargarGrid()

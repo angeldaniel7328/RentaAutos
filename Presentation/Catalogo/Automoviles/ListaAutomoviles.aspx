@@ -34,8 +34,7 @@
                             </div>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:ButtonField ButtonType="Button" ControlStyle-CssClass="btn btn-success btn-xs" 
-                        Text="Seleccionar" CommandName="Select" />
+                    <asp:ButtonField ButtonType="Button" ControlStyle-CssClass="btn btn-success btn-xs" Text="Seleccionar" CommandName="Select" />
                 </Columns>
             </asp:GridView>
         </div>
