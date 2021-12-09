@@ -18,7 +18,7 @@ namespace DataAccess
                 parametros.Add(new Parametro("@IdAutomovil", SqlDbType.Int, renta.IdAutomovil));
                 parametros.Add(new Parametro("@IdCliente", SqlDbType.Int, renta.IdCliente));
                 int rows = ManejadorConsultas.EjecutarSinConsulta("SP_InsertarRenta", parametros);
-                return (rows == 1);
+                return (rows != 0);
             }
             catch (Exception)
             {
@@ -28,25 +28,22 @@ namespace DataAccess
 
         public static VORenta ConsultarRentaPorId(int idRenta)
         {
-            VORenta renta = null;
+            VORenta renta;
             try
             {
                 List<Parametro> parametros = new List<Parametro>();
                 parametros.Add(new Parametro("@IdRenta", SqlDbType.Int, idRenta));
                 Dictionary<string, object> datos = ManejadorConsultas.EjecutarLectura("SP_ConsultarRentaPorId", parametros);
-                if (datos.Count > 0)
+                renta = new VORenta()
                 {
-                    renta = new VORenta()
-                    {
-                        IdRenta = (int)datos["IdRenta"],
-                        FechaHora = (DateTime?)datos["FechaHora"],
-                        Completada = (bool?)datos["Completada"],
-                        Plazo = (int?)datos["Plazo"],
-                        CuotaTotal = double.Parse(datos["CuotaTotal"].ToString()),
-                        IdAutomovil = (int?)datos["IdAutomovil"],
-                        IdCliente = (int?)datos["IdCliente"]
-                    };
-                }
+                    IdRenta = (int)datos["IdRenta"],
+                    FechaHora = (DateTime?)datos["FechaHora"],
+                    Completada = (bool?)datos["Completada"],
+                    Plazo = (int?)datos["Plazo"],
+                    CuotaTotal = double.Parse(datos["CuotaTotal"].ToString()),
+                    IdAutomovil = (int?)datos["IdAutomovil"],
+                    IdCliente = (int?)datos["IdCliente"]
+                };
             }
             catch (Exception)
             {
@@ -95,23 +92,20 @@ namespace DataAccess
                 List<Parametro> parametros = new List<Parametro>();
                 parametros.Add(new Parametro("@IdRenta", SqlDbType.Int, idRenta));
                 Dictionary<string, object> datos = ManejadorConsultas.EjecutarLectura("SP_ConsultarRentaExtendidaPorId", parametros);
-                if (datos.Count > 0)
+                renta = new VORentaExtendida()
                 {
-                    renta = new VORentaExtendida()
-                    {
-                        IdRenta = (int)datos["IdRenta"],
-                        FechaHora = (DateTime?)datos["FechaHora"],
-                        Completada = (bool?)datos["Completada"],
-                        Plazo = (int?)datos["Plazo"],
-                        CuotaTotal = double.Parse(datos["CuotaTotal"].ToString()),
-                        NombreAutomovil = (string)datos["NombreAutomovil"],
-                        UrlFotoAutomovil = (string)datos["UrlFotoAutomovil"],
-                        NombreCliente = (string)datos["NombreCliente"],
-                        UrlFotoCliente = (string)datos["UrlFotoCliente"],
-                        IdAutomovil = (int?)datos["IdAutomovil"],
-                        IdCliente = (int?)datos["IdCliente"]
-                    };
-                }
+                    IdRenta = (int)datos["IdRenta"],
+                    FechaHora = (DateTime?)datos["FechaHora"],
+                    Completada = (bool?)datos["Completada"],
+                    Plazo = (int?)datos["Plazo"],
+                    CuotaTotal = double.Parse(datos["CuotaTotal"].ToString()),
+                    NombreAutomovil = (string)datos["NombreAutomovil"],
+                    UrlFotoAutomovil = (string)datos["UrlFotoAutomovil"],
+                    NombreCliente = (string)datos["NombreCliente"],
+                    UrlFotoCliente = (string)datos["UrlFotoCliente"],
+                    IdAutomovil = (int?)datos["IdAutomovil"],
+                    IdCliente = (int?)datos["IdCliente"]
+                };
             }
             catch (Exception)
             {
@@ -127,7 +121,7 @@ namespace DataAccess
                 List<Parametro> parametros = new List<Parametro>();
                 parametros.Add(new Parametro("@IdRenta", SqlDbType.Int, idRenta));
                 int rows = ManejadorConsultas.EjecutarSinConsulta("SP_DevolverAutomovil", parametros);
-                return (rows == 1);
+                return (rows != 0);
             }
             catch (Exception)
             {

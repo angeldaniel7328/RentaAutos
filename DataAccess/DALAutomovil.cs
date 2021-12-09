@@ -28,25 +28,22 @@ namespace DataAccess
 
         public static VOAutomovil ConsultarAutomovilPorId(int idAutomovil)
         {
-            VOAutomovil automovil = null;
+            VOAutomovil automovil;
             try
             {
                 List<Parametro> parametros = new List<Parametro>();
                 parametros.Add(new Parametro("@IdAutomovil", SqlDbType.Int, idAutomovil));
                 Dictionary<string, object> datos = ManejadorConsultas.EjecutarLectura("SP_ConsultarAutomovilPorId", parametros);
-                if (datos.Count > 0)
+                automovil = new VOAutomovil()
                 {
-                    automovil = new VOAutomovil()
-                    {
-                        IdAutomovil = (int)datos["IdAutomovil"],
-                        Matricula = (string)datos["Matricula"],
-                        Modelo = (string)datos["Modelo"],
-                        Marca = (string)datos["Marca"],
-                        Cuota = double.Parse(datos["Cuota"].ToString()),
-                        Disponibilidad = (bool)datos["Disponibilidad"],
-                        UrlFoto = (string)datos["UrlFoto"]
-                    };
-                }
+                    IdAutomovil = (int)datos["IdAutomovil"],
+                    Matricula = (string)datos["Matricula"],
+                    Modelo = (string)datos["Modelo"],
+                    Marca = (string)datos["Marca"],
+                    Cuota = double.Parse(datos["Cuota"].ToString()),
+                    Disponibilidad = (bool)datos["Disponibilidad"],
+                    UrlFoto = (string)datos["UrlFoto"]
+                };
             }
             catch (Exception)
             {
