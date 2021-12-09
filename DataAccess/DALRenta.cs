@@ -89,7 +89,7 @@ namespace DataAccess
 
         public static VORentaExtendida ConsultarRentaExtendidaPorId(int idRenta)
         {
-            VORentaExtendida renta = null;
+            VORentaExtendida renta;
             try
             {
                 List<Parametro> parametros = new List<Parametro>();

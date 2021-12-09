@@ -15,9 +15,11 @@ namespace Entities
 
         public VORenta(DataRow registro)
         {
-            IdRenta = (int)registro["IDRenta"];
+            IdRenta = (int)registro["IdRenta"];
             FechaHora = (DateTime?)registro["FechaHora"];
             Completada = (bool?)registro["Completada"];
+            Plazo = (int?)registro["Plazo"];
+            CuotaTotal = double.Parse(registro["CuotaTotal"].ToString());
             IdAutomovil = (int?)registro["IdAutomovil"];
             IdCliente = (int?)registro["IdCliente"];
         }
@@ -38,6 +40,11 @@ namespace Entities
 
         public VORentaExtendida(DataRow registro) : base(registro)
         {
+            IdRenta = (int)registro["IdRenta"];
+            FechaHora = (DateTime?)registro["FechaHora"];
+            Completada = (bool?)registro["Completada"];
+            IdAutomovil = (int?)registro["IdAutomovil"];
+            IdCliente = (int?)registro["IdCliente"];
             NombreAutomovil = (string)registro["NombreAutomovil"];
             UrlFotoAutomovil = (string)registro["UrlFotoAutomovil"];
             NombreCliente = (string)registro["NombreCliente"];

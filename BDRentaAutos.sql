@@ -221,7 +221,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[SP_ConsultarRentasPorId]
+CREATE PROCEDURE [dbo].[SP_ConsultarRentaPorId]
 @IdRenta INT
 
 AS
@@ -236,7 +236,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[SP_ConsultarRentasPorIdExtendida]
+CREATE PROCEDURE [dbo].[SP_ConsultarRentaExtendidaPorId]
 @IdRenta INT
 
 AS
