@@ -104,7 +104,7 @@ namespace DataAccess
                         Completada = (bool?)datos["Completada"],
                         Plazo = (int?)datos["Plazo"],
                         CuotaTotal = double.Parse(datos["CuotaTotal"].ToString()),
-                        ModeloAutomovil = (string)datos["ModeloAutomovil"],
+                        NombreAutomovil = (string)datos["NombreAutomovil"],
                         UrlFotoAutomovil = (string)datos["UrlFotoAutomovil"],
                         NombreCliente = (string)datos["NombreCliente"],
                         UrlFotoCliente = (string)datos["UrlFotoCliente"],

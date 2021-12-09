@@ -31,14 +31,14 @@ namespace Entities
 
     public class VORentaExtendida : VORenta
     {
-        public string ModeloAutomovil { get; set; }
+        public string NombreAutomovil { get; set; }
         public string UrlFotoAutomovil { get; set; }
         public string NombreCliente { get; set; }
         public string UrlFotoCliente { get; set; }
 
         public VORentaExtendida(DataRow registro) : base(registro)
         {
-            ModeloAutomovil = (string)registro["ModeloAutomovil"];
+            NombreAutomovil = (string)registro["NombreAutomovil"];
             UrlFotoAutomovil = (string)registro["UrlFotoAutomovil"];
             NombreCliente = (string)registro["NombreCliente"];
             UrlFotoCliente = (string)registro["UrlFotoCliente"];
