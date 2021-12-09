@@ -84,11 +84,10 @@
             </div>
         </div>
         <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr />
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+            <hr/>
             <footer>
-                <p>&copy; <%: DateTime.Now %> Malecón Costero, John Spark #4017-Local 2</p>
+                <p>&copy; <%: DateTime.Now %></p>
             </footer>
         </div>
 

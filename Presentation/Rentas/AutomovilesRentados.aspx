@@ -7,7 +7,7 @@
         </div>
 
         <div class="row col-md-10 col-md-offset-1">
-            <asp:GridView ID="gvRentas" runat="server" AutoGenerateColumns="false" DataKeyNames="IdSalida" OnRowCommand="gvRentas_RowCommand">
+            <asp:GridView ID="gvRentas" runat="server" AutoGenerateColumns="false" DataKeyNames="IdRenta" OnRowCommand="gvRentas_RowCommand">
                 <Columns>
                     <asp:ImageField HeaderText="Foto Automovil" ReadOnly="true" DataImageUrlField="UrlFotoAutomovil" ControlStyle-Width="110px" ControlStyle-CssClass="fotogv"></asp:ImageField>
                     <asp:ImageField HeaderText="Foto Cliente" ReadOnly="true" DataImageUrlField="UrlFotoCliente" ControlStyle-Width="110px" ControlStyle-CssClass="fotogv"></asp:ImageField>

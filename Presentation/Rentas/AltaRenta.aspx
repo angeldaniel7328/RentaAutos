@@ -24,7 +24,7 @@
 
         <div class="row form-group">
             <label for="<%=txtCuota.ClientID%>">Cuota:</label>
-            <asp:TextBox ID="txtCuota" runat="server" CssClass="form-control" placeholder="0.00"></asp:TextBox>
+            <asp:TextBox ID="txtCuota" runat="server" CssClass="form-control" placeholder="0.00" ReadOnly="true"></asp:TextBox>
         </div>
 
         <div class="row form-group">
@@ -43,7 +43,7 @@
         </div>
         
         <div class="row form-group">
-            <asp:Button ID="btnGuardar" ValidationGroup="Guardar" runat="server" Text="Guardar" CssClass="btn btn-success" Visible="false" OnClick="btnGuardar_Click"/>
+            <asp:Button ID="btnGuardar" ValidationGroup="Guardar" runat="server" Text="Guardar" CssClass="btn btn-success" Visible="true" OnClick="btnGuardar_Click"/>
         </div>
     </div>
 

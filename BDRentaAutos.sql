@@ -28,7 +28,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Clientes](
 	[IdCliente] [INT] IDENTITY(1,1) NOT NULL,
-    	[Nombre] [VARCHAR](50) NOT NULL,
+    [Nombre] [VARCHAR](50) NOT NULL,
 	[Telefono] [NVARCHAR](20) NOT NULL,
 	[Direccion] [VARCHAR](100) NOT NULL,	
 	[Correo] [VARCHAR](100) NOT NULL,
@@ -75,13 +75,13 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[SP_ActualizarAutomovil]
-@IdAutomovil int,
-@Matricula varchar(10)=NULL,
-@Modelo varchar(5)=NULL,
-@Marca varchar(25)=NULL,
-@Cuota decimal(10,2)=NULL,
-@UrlFoto varchar(max)=NULL,
-@Disponibilidad int=null
+@IdAutomovil INT,
+@Matricula VARCHAR(10)=NULL,
+@Modelo VARCHAR(5)=NULL,
+@Marca VARCHAR(25)=NULL,
+@Cuota DECIMAL(10,2)=NULL,
+@UrlFoto VARCHAR(MAX)=NULL,
+@Disponibilidad INT=NULL
 
 AS
 
@@ -103,12 +103,12 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[SP_ActualizarCliente]
-@IdCliente int,
-@Nombre varchar(50)=null,
-@Telefono varchar(20)=null,
-@Direccion varchar(100)=null,
-@Correo varchar(100)=null,
-@UrlFoto varchar(max)=null
+@IdCliente INT,
+@Nombre VARCHAR(50)=NULL,
+@Telefono VARCHAR(20)=NULL,
+@Direccion VARCHAR(100)=NULL,
+@Correo VARCHAR(100)=NULL,
+@UrlFoto VARCHAR(MAX)=NULL
 
 AS
 BEGIN
@@ -128,7 +128,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[SP_ConsultarAutomovilPorId]
-@IdAutomovil int
+@IdAutomovil INT
 
 AS
 
@@ -143,11 +143,11 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[SP_ConsultarAutomoviles]
-@Disponibilidad bit=null
+@Disponibilidad BIT=NULL
 AS
 
 BEGIN
-	IF(@Disponibilidad is null)
+	IF(@Disponibilidad IS NULL)
 		BEGIN
 			SELECT * FROM Automoviles
 		END
@@ -164,7 +164,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[SP_ConsultarClientePorId]
-@IdCliente int
+@IdCliente INT
 
 AS
 
@@ -204,12 +204,11 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[SP_ConsultarRentasExtendidas]
-
 AS
 
 BEGIN
 	SELECT R.IdRenta, R.FechaHora, R.Completada, R.Plazo, R.CuotaTotal, R.IdAutomovil, R.IdCliente,
-	A.Modelo as ModeloAutomovil, A.UrlFoto as UrlFotoAutomovil,
+	A.Marca + ' ' + A.Modelo + ' ' + A.Matricula as NombreAutomovil, A.UrlFoto as UrlFotoAutomovil,
 	C.Nombre as NombreCliente, C.UrlFoto as UrlFotoCliente
 	FROM Rentas R
 
@@ -223,7 +222,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[SP_ConsultarRentasPorId]
-@IdRenta int
+@IdRenta INT
 
 AS
 
@@ -238,13 +237,13 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[SP_ConsultarRentasPorIdExtendida]
-@IdRenta int
+@IdRenta INT
 
 AS
 
 BEGIN
 	SELECT R.IdRenta, R.FechaHora, R.Completada, R.Plazo, R.CuotaTotal, R.IdAutomovil, R.IdCliente,
-	A.Modelo as ModeloAutomovil, A.UrlFoto as UrlFotoAutomovil,
+	A.Marca + ' ' + A.Modelo + ' ' + A.Matricula as NombreAutomovil, A.UrlFoto as UrlFotoAutomovil,
 	C.Nombre as NombreCliente, C.UrlFoto as UrlFotoCliente
 	FROM Rentas R
 
@@ -259,7 +258,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[SP_EliminarAutomovil]
-@IdAutomovil int
+@IdAutomovil INT
 
 AS
 
@@ -274,7 +273,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[SP_EliminarCliente]
-@IdCliente int
+@IdCliente INT
 
 AS
 
@@ -289,12 +288,12 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[SP_DevolverAutomovil]
-@IdRenta int
+@IdRenta INT
 
 AS
 
 BEGIN
-DECLARE @IdAutomovil int
+DECLARE @IdAutomovil INT
 	SELECT @IdAutomovil=IdAutomovil FROM Rentas
 	WHERE IdRenta=@IdRenta
 
@@ -316,11 +315,11 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[SP_InsertarAutomovil]
-@Matricula varchar(10),
-@Modelo varchar(5),
-@Marca varchar(25),
-@Cuota decimal(10,2),
-@UrlFoto varchar(max)
+@Matricula VARCHAR(10),
+@Modelo VARCHAR(5),
+@Marca VARCHAR(25),
+@Cuota DECIMAL(10,2),
+@UrlFoto VARCHAR(MAX)
 
 AS
 
@@ -335,11 +334,11 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[SP_InsertarCliente]
-@Nombre varchar(50),
-@Telefono varchar(20),
-@Direccion varchar(100),
-@Correo varchar(100),
-@UrlFoto varchar(max)
+@Nombre VARCHAR(50),
+@Telefono VARCHAR(20),
+@Direccion VARCHAR(100),
+@Correo VARCHAR(100),
+@UrlFoto VARCHAR(MAX)
 
 AS
 BEGIN
@@ -353,11 +352,11 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[SP_InsertarRenta]
-@FechaHora DateTime,
-@Plazo int,
-@CuotaTotal decimal(10,2),
-@IdAutomovil int,
-@IdCliente int
+@FechaHora DATETIME,
+@Plazo INT,
+@CuotaTotal DECIMAL(10,2),
+@IdAutomovil INT,
+@IdCliente INT
 
 AS
 

@@ -44,7 +44,7 @@ namespace Presentation.Rentas
                 };
                 BLLRenta.InsertarRenta(renta);
                 LimpiarFormulario();
-                Response.Redirect("RentasProceso.aspx");
+                Response.Redirect("AutomovilesRentados.aspx");
             }
             catch (Exception ex)
             {
