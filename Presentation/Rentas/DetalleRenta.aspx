@@ -5,7 +5,7 @@
             <h3>Detalle Renta</h3>
             <h4>ID:
                 <asp:Label ID="lblIdRenta" runat="server" Text=""></asp:Label></h4>
-            <hr />
+            <hr/>
         </div>
         <div class="col-md-10 col-md-offset-1">
             <dl class="dl-horizontal">

@@ -1,5 +1,6 @@
 CREATE DATABASE [DBRentaAutos]
 GO
+
 USE [DBRentaAutos]
 GO
 
@@ -7,6 +8,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE TABLE [dbo].[Automoviles](
 	[IdAutomovil] [INT] IDENTITY(1,1) NOT NULL,
 	[Matricula] [VARCHAR](10) NOT NULL,
@@ -26,9 +28,10 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE TABLE [dbo].[Clientes](
 	[IdCliente] [INT] IDENTITY(1,1) NOT NULL,
-    [Nombre] [VARCHAR](50) NOT NULL,
+	[Nombre] [VARCHAR](50) NOT NULL,
 	[Telefono] [NVARCHAR](20) NOT NULL,
 	[Direccion] [VARCHAR](100) NOT NULL,	
 	[Correo] [VARCHAR](100) NOT NULL,
@@ -44,6 +47,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE TABLE [dbo].[Rentas](
 	[IdRenta] [INT] IDENTITY(1,1) NOT NULL,
 	[FechaHora] [DATETIME] NOT NULL,
@@ -62,11 +66,14 @@ GO
 ALTER TABLE [dbo].[Rentas]  WITH CHECK ADD  CONSTRAINT [FK_Rentas_Automoviles] FOREIGN KEY([IdAutomovil])
 REFERENCES [dbo].[Automoviles] ([IdAutomovil])
 GO
+
 ALTER TABLE [dbo].[Rentas] CHECK CONSTRAINT [FK_Rentas_Automoviles]
 GO
+
 ALTER TABLE [dbo].[Rentas]  WITH CHECK ADD  CONSTRAINT [FK_Rentas_Clientes] FOREIGN KEY([IdCliente])
 REFERENCES [dbo].[Clientes] ([IdCliente])
 GO
+
 ALTER TABLE [dbo].[Rentas] CHECK CONSTRAINT [FK_Rentas_Clientes]
 GO
 
@@ -74,20 +81,19 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[SP_ActualizarAutomovil]
-@IdAutomovil INT,
-@Matricula VARCHAR(10)=NULL,
-@Modelo VARCHAR(5)=NULL,
-@Marca VARCHAR(25)=NULL,
-@Cuota DECIMAL(10,2)=NULL,
-@UrlFoto VARCHAR(MAX)=NULL,
-@Disponibilidad INT=NULL
 
+CREATE PROCEDURE [dbo].[SP_ActualizarAutomovil]
+	@IdAutomovil INT,
+	@Matricula VARCHAR(10)=NULL,
+	@Modelo VARCHAR(5)=NULL,
+	@Marca VARCHAR(25)=NULL,
+	@Cuota DECIMAL(10,2)=NULL,
+	@UrlFoto VARCHAR(MAX)=NULL,
+	@Disponibilidad INT=NULL
 AS
 
 BEGIN
-	UPDATE Automoviles
-	SET
+	UPDATE Automoviles SET
 	Matricula=ISNULL(@Matricula,Matricula),
 	Modelo=ISNULL(@Modelo,Modelo),
 	Marca=ISNULL(@Marca,Marca),
@@ -102,20 +108,19 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[SP_ActualizarCliente]
-@IdCliente INT,
-@Nombre VARCHAR(50)=NULL,
-@Telefono VARCHAR(20)=NULL,
-@Direccion VARCHAR(100)=NULL,
-@Correo VARCHAR(100)=NULL,
-@UrlFoto VARCHAR(MAX)=NULL
 
+CREATE PROCEDURE [dbo].[SP_ActualizarCliente]
+	@IdCliente INT,
+	@Nombre VARCHAR(50)=NULL,
+	@Telefono VARCHAR(20)=NULL,
+	@Direccion VARCHAR(100)=NULL,
+	@Correo VARCHAR(100)=NULL,
+	@UrlFoto VARCHAR(MAX)=NULL
 AS
 BEGIN
-	UPDATE Clientes
-	SET
+	UPDATE Clientes SET
 	Nombre=ISNULL(@Nombre,Nombre),
-    Telefono=ISNULL(@Telefono,Telefono),
+	Telefono=ISNULL(@Telefono,Telefono),
 	Direccion=ISNULL(@Direccion,Direccion),
 	Correo=ISNULL(@Correo,Correo),
 	UrlFoto=ISNULL(@UrlFoto,UrlFoto)
@@ -127,11 +132,10 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [dbo].[SP_ConsultarAutomovilPorId]
-@IdAutomovil INT
-
+	@IdAutomovil INT
 AS
-
 BEGIN
 	SELECT * FROM Automoviles
 	WHERE IdAutomovil=@IdAutomovil
@@ -142,20 +146,20 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[SP_ConsultarAutomoviles]
-@Disponibilidad BIT=NULL
-AS
 
+CREATE PROCEDURE [dbo].[SP_ConsultarAutomoviles]
+	@Disponibilidad BIT=NULL
+AS
 BEGIN
 	IF(@Disponibilidad IS NULL)
-		BEGIN
-			SELECT * FROM Automoviles
-		END
+	BEGIN
+		SELECT * FROM Automoviles
+	END
 	ELSE
-		BEGIN
-			SELECT * FROM Automoviles
-			WHERE Disponibilidad=@Disponibilidad
-		END
+	BEGIN
+		SELECT * FROM Automoviles
+		WHERE Disponibilidad=@Disponibilidad
+	END
 END
 GO
 
@@ -163,9 +167,9 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[SP_ConsultarClientePorId]
-@IdCliente INT
 
+CREATE PROCEDURE [dbo].[SP_ConsultarClientePorId]
+	@IdCliente INT
 AS
 
 BEGIN
@@ -178,9 +182,9 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [dbo].[SP_ConsultarClientes]
 AS
-
 BEGIN
     SELECT * FROM Clientes
 END	
@@ -190,10 +194,9 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [dbo].[SP_ConsultarRentas]
-
 AS
-
 BEGIN
 	SELECT * FROM Rentas
 END
@@ -203,15 +206,23 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [dbo].[SP_ConsultarRentasExtendidas]
 AS
-
 BEGIN
-	SELECT R.IdRenta, R.FechaHora, R.Completada, R.Plazo, R.CuotaTotal, R.IdAutomovil, R.IdCliente,
-	A.Marca + ' ' + A.Modelo + ' ' + A.Matricula as NombreAutomovil, A.UrlFoto as UrlFotoAutomovil,
-	C.Nombre as NombreCliente, C.UrlFoto as UrlFotoCliente
+	SELECT 
+	R.IdRenta, 
+	R.FechaHora, 
+	R.Completada, 
+	R.Plazo, 
+	R.CuotaTotal, 
+	R.IdAutomovil, 
+	R.IdCliente,
+	A.Marca + ' ' + A.Modelo + ' ' + A.Matricula as NombreAutomovil, 
+	A.UrlFoto as UrlFotoAutomovil,
+	C.Nombre as NombreCliente, 
+	C.UrlFoto as UrlFotoCliente
 	FROM Rentas R
-
 	INNER JOIN Automoviles A ON R.IdAutomovil= A.IdAutomovil
 	INNER JOIN Clientes C ON R.IdCliente= C.IdCliente
 END
@@ -221,9 +232,9 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [dbo].[SP_ConsultarRentaPorId]
 @IdRenta INT
-
 AS
 
 BEGIN
@@ -236,17 +247,25 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [dbo].[SP_ConsultarRentaExtendidaPorId]
 @IdRenta INT
-
 AS
 
 BEGIN
-	SELECT R.IdRenta, R.FechaHora, R.Completada, R.Plazo, R.CuotaTotal, R.IdAutomovil, R.IdCliente,
-	A.Marca + ' ' + A.Modelo + ' ' + A.Matricula as NombreAutomovil, A.UrlFoto as UrlFotoAutomovil,
-	C.Nombre as NombreCliente, C.UrlFoto as UrlFotoCliente
+	SELECT 
+	R.IdRenta, 
+	R.FechaHora, 
+	R.Completada, 
+	R.Plazo, 
+	R.CuotaTotal, 
+	R.IdAutomovil, 
+	R.IdCliente,
+	A.Marca + ' ' + A.Modelo + ' ' + A.Matricula as NombreAutomovil, 
+	A.UrlFoto as UrlFotoAutomovil,
+	C.Nombre as NombreCliente, 
+	C.UrlFoto as UrlFotoCliente
 	FROM Rentas R
-
 	INNER JOIN Automoviles A ON R.IdAutomovil= A.IdAutomovil
 	INNER JOIN Clientes C ON R.IdCliente= C.IdCliente
 	WHERE IdRenta=@IdRenta
@@ -257,11 +276,10 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [dbo].[SP_EliminarAutomovil]
 @IdAutomovil INT
-
 AS
-
 BEGIN
 	DELETE Automoviles
 	WHERE IdAutomovil=@IdAutomovil
@@ -274,9 +292,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[SP_EliminarCliente]
 @IdCliente INT
-
 AS
-
 BEGIN
 	DELETE Clientes
 	WHERE IdCliente=@IdCliente
@@ -287,14 +303,14 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [dbo].[SP_DevolverAutomovil]
 @IdRenta INT
-
 AS
-
 BEGIN
-DECLARE @IdAutomovil INT
-	SELECT @IdAutomovil=IdAutomovil FROM Rentas
+	DECLARE @IdAutomovil INT
+	SELECT @IdAutomovil=IdAutomovil 
+	FROM Rentas
 	WHERE IdRenta=@IdRenta
 
 	UPDATE Rentas
@@ -306,7 +322,6 @@ DECLARE @IdAutomovil INT
 	SET
 	Disponibilidad=1
 	WHERE IdAutomovil=@IdAutomovil
-
 END
 GO
 
@@ -314,15 +329,14 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [dbo].[SP_InsertarAutomovil]
 @Matricula VARCHAR(10),
 @Modelo VARCHAR(5),
 @Marca VARCHAR(25),
 @Cuota DECIMAL(10,2),
 @UrlFoto VARCHAR(MAX)
-
 AS
-
 BEGIN
 	INSERT INTO Automoviles(Matricula,Modelo,Marca,Cuota,UrlFoto,Disponibilidad)
 	VALUES (@Matricula,@Modelo,@Marca,@Cuota,@UrlFoto,1)
@@ -333,6 +347,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [dbo].[SP_InsertarCliente]
 @Nombre VARCHAR(50),
 @Telefono VARCHAR(20),
@@ -341,9 +356,9 @@ CREATE PROCEDURE [dbo].[SP_InsertarCliente]
 @UrlFoto VARCHAR(MAX)
 
 AS
-BEGIN
-INSERT INTO Clientes(Nombre,Direccion,Telefono,Correo,UrlFoto)
-VALUES (@Nombre,@Direccion,@Telefono,@Correo,@UrlFoto)
+	BEGIN
+	INSERT INTO Clientes(Nombre,Direccion,Telefono,Correo,UrlFoto)
+	VALUES (@Nombre,@Direccion,@Telefono,@Correo,@UrlFoto)
 END
 GO
 
@@ -351,21 +366,19 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE PROCEDURE [dbo].[SP_InsertarRenta]
-@FechaHora DATETIME,
-@Plazo INT,
-@CuotaTotal DECIMAL(10,2),
-@IdAutomovil INT,
-@IdCliente INT
-
+	@FechaHora DATETIME,
+	@Plazo INT,
+	@CuotaTotal DECIMAL(10,2),
+	@IdAutomovil INT,
+	@IdCliente INT
 AS
-
 BEGIN
 	INSERT INTO Rentas(FechaHora, Plazo, CuotaTotal, Completada, IdAutomovil, IdCliente)
 	VALUES(@FechaHora,@Plazo, @CuotaTotal, 0, @IdAutomovil, @IdCliente)
 
-	UPDATE Automoviles
-	SET
+	UPDATE Automoviles SET
 	Disponibilidad=0
 	WHERE IdAutomovil=@IdAutomovil
 END

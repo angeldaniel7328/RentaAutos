@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <h3>Alta Cliente</h3>
-            <hr />
+            <hr/>
         </div>
 
         <div class="row form-group">
@@ -54,13 +54,12 @@
         <div class="row form-group">
             <div class="col-md-3" style="text-align:center;">
                 <label for="<%=subirImagen.ClientID%>">Foto:</label>
-                 <asp:Image ID="imgFotoCliente" Width="200" Height="200" runat="server"></asp:Image>
+                    <asp:Image ID="imgFotoCliente" Width="200" Height="200" runat="server"></asp:Image>
                 <label id="lblUrlFoto" runat="server"></label>
             </div>
         </div>
         <div class="row form-group">
-            <asp:Button ID="btnGuardar" ValidationGroup="Guardar" runat="server" Text="Guardar" CssClass="btn btn-success" Visible="false" OnClick="btnGuardar_Click">
-            </asp:Button>
+            <asp:Button ID="btnGuardar" ValidationGroup="Guardar" runat="server" Text="Guardar" CssClass="btn btn-success" Visible="false" OnClick="btnGuardar_Click"></asp:Button>
         </div>
     </div>
 </asp:Content>

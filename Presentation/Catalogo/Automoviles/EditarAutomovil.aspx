@@ -5,7 +5,7 @@
             <h3>Edición Automovil</h3>
             <h4>ID:
                 <asp:Label ID="lblAutomovil" runat="server" Text=""></asp:Label></h4>
-            <hr />
+            <hr/>
         </div>
         <div class="row form-group">
             <label for="<%=txtMatricula.ClientID %>">Matrícula:</label>

@@ -5,7 +5,7 @@
             <h3>Edición Cliente</h3>
             <h4>ID:
                 <asp:Label ID="lblCliente" runat="server" Text=""></asp:Label></h4>
-            <hr />
+            <hr/>
         </div>
         
         <div class="row form-group">

@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <h3>Automoviles Devueltos</h3>
-            <hr />
+            <hr/>
         </div>
 
         <div class="row col-md-10 col-md-offset-1">
