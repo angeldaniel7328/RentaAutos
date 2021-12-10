@@ -34,7 +34,7 @@
         </div>
         <div class="row form-group col-md-10 col-md-offset-4" style="padding-top:20px">
             <div class="col-md-4">
-                <asp:Button ID="btnDevolver" runat="server" Text="Registrar devolución" CssClass="btn btn-success" OnClick="btnDevolver_Click" />
+                <asp:Button ID="btnDevolver" runat="server" Text="Registrar devolución" CssClass="btn btn-success" Visible="false" OnClick="btnDevolver_Click" />
             </div>
         </div>
     </div>

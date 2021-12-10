@@ -38,6 +38,8 @@ namespace Presentation.Rentas
             imgFotoCliente.ImageUrl = renta.UrlFotoCliente;
             lblAutomovil.Text = renta.NombreAutomovil;
             imgFotoAutomovil.ImageUrl = renta.UrlFotoAutomovil;
+            if ((bool)!renta.Completada)
+                btnDevolver.Visible = true;
         }
 
         protected void btnDevolver_Click(object sender, EventArgs e)
