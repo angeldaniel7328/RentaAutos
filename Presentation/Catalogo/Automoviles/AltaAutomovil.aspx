@@ -37,8 +37,6 @@
             </div>
         </div>
 
-        <textarea id="TextArea1" cols="20" rows="2"></textarea>
-
         <div class="row form-group">
             <label for="<%=txtCuota.ClientID%>">Cuota:</label>
             <asp:TextBox ID="txtCuota" runat="server" CssClass="form-control" placeholder="0.00"></asp:TextBox>

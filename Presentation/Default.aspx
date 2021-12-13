@@ -7,6 +7,10 @@
         <h2 class="lead">Caso práctico</h2>
     </div>
 
+    <div>
+        <asp:Image ID="Portada" runat="server" ImageUrl="~/imagen_central.jpg" Height="628px" Width="1166px"  />
+    </div>
+    
     <div class="row">
         <div class="col-md-4">
             <h3>Equipo 10</h3>
