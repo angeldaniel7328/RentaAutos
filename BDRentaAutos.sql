@@ -17,6 +17,7 @@ CREATE TABLE [dbo].[Automoviles](
 	[Cuota] [DECIMAL](10, 2) NOT NULL,
 	[Disponibilidad] [BIT] NOT NULL,
 	[UrlFoto] [VARCHAR](MAX) NOT NULL,
+	[Eliminado] [BIT] NOT NULL
  CONSTRAINT [PK_Automoviles] PRIMARY KEY CLUSTERED 
 (
 	[IdAutomovil] ASC
@@ -36,6 +37,7 @@ CREATE TABLE [dbo].[Clientes](
 	[Direccion] [VARCHAR](100) NOT NULL,	
 	[Correo] [VARCHAR](100) NOT NULL,
 	[UrlFoto] [VARCHAR](MAX) NOT NULL,
+	[Eliminado] [BIT] NOT NULL
  CONSTRAINT [PK_Clientes] PRIMARY KEY CLUSTERED 
 (
 	[IdCliente] ASC
@@ -93,7 +95,7 @@ CREATE PROCEDURE [dbo].[SP_ActualizarAutomovil]
 AS
 
 BEGIN
-	UPDATE Automoviles SET
+	UPDATE Automoviles SET 
 	Matricula=ISNULL(@Matricula,Matricula),
 	Modelo=ISNULL(@Modelo,Modelo),
 	Marca=ISNULL(@Marca,Marca),
@@ -153,12 +155,13 @@ AS
 BEGIN
 	IF(@Disponibilidad IS NULL)
 	BEGIN
-		SELECT * FROM Automoviles
+		SELECT * FROM Automoviles WHERE Eliminado=0
 	END
 	ELSE
 	BEGIN
 		SELECT * FROM Automoviles
 		WHERE Disponibilidad=@Disponibilidad
+		AND Eliminado=0
 	END
 END
 GO
@@ -187,6 +190,7 @@ CREATE PROCEDURE [dbo].[SP_ConsultarClientes]
 AS
 BEGIN
     SELECT * FROM Clientes
+	WHERE Eliminado=0
 END	
 GO
 
@@ -281,7 +285,8 @@ CREATE PROCEDURE [dbo].[SP_EliminarAutomovil]
 @IdAutomovil INT
 AS
 BEGIN
-	DELETE Automoviles
+	UPDATE Automoviles SET 
+	Eliminado=1
 	WHERE IdAutomovil=@IdAutomovil
 END
 GO
@@ -294,7 +299,8 @@ CREATE PROCEDURE [dbo].[SP_EliminarCliente]
 @IdCliente INT
 AS
 BEGIN
-	DELETE Clientes
+	UPDATE Clientes SET 
+	Eliminado=1
 	WHERE IdCliente=@IdCliente
 END
 GO
@@ -338,8 +344,8 @@ CREATE PROCEDURE [dbo].[SP_InsertarAutomovil]
 @UrlFoto VARCHAR(MAX)
 AS
 BEGIN
-	INSERT INTO Automoviles(Matricula,Modelo,Marca,Cuota,UrlFoto,Disponibilidad)
-	VALUES (@Matricula,@Modelo,@Marca,@Cuota,@UrlFoto,1)
+	INSERT INTO Automoviles(Matricula,Modelo,Marca,Cuota,UrlFoto,Disponibilidad, Eliminado)
+	VALUES (@Matricula,@Modelo,@Marca,@Cuota,@UrlFoto,1, 0)
 END
 GO
 
@@ -357,8 +363,8 @@ CREATE PROCEDURE [dbo].[SP_InsertarCliente]
 
 AS
 	BEGIN
-	INSERT INTO Clientes(Nombre,Direccion,Telefono,Correo,UrlFoto)
-	VALUES (@Nombre,@Direccion,@Telefono,@Correo,@UrlFoto)
+	INSERT INTO Clientes(Nombre,Direccion,Telefono,Correo,UrlFoto, Eliminado)
+	VALUES (@Nombre,@Direccion,@Telefono,@Correo,@UrlFoto, 0)
 END
 GO
 

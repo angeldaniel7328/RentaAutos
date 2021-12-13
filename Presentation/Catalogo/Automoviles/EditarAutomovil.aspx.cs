@@ -23,10 +23,10 @@ namespace Presentation.Catalogo.Automoviles
                 }
                 else
                 {
-                    string idAutomovil = Request.QueryString["Id"].ToString();
-                    VOAutomovil automovil = BLLAutomovil.ConsultarAutomovilPorId(idAutomovil);
+                    var idAutomovil = Request.QueryString["Id"].ToString();
+                    var automovil = BLLAutomovil.ConsultarAutomovilPorId(idAutomovil);
                     CargarFormulario(automovil);
-                    bool disponibilidad = (bool)automovil.Disponibilidad;
+                    var disponibilidad = (bool)automovil.Disponibilidad;
                     lblAutomovil.ForeColor = disponibilidad ? Color.Green: Color.Red;
                     btnEliminar.Visible = disponibilidad;
                 }
@@ -44,26 +44,11 @@ namespace Presentation.Catalogo.Automoviles
             imgFotoAutomovil.ImageUrl = automovil.UrlFoto;
         }
 
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                BLLAutomovil.EliminarAutomovil(lblAutomovil.Text);
-                LimpiarFormulario();
-                Response.Redirect("ListaAutomoviles.aspx");
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), $"Mensaje de error",
-                    "alert(Se registró un error al realizar la operación " + ex.Message + ");", true);
-            }
-        }
-
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
-                VOAutomovil automovil = new VOAutomovil
+                var automovil = new VOAutomovil
                 {
                     IdAutomovil = int.Parse(lblAutomovil.Text),
                     Matricula = txtMatricula.Text,
@@ -120,5 +105,20 @@ namespace Presentation.Catalogo.Automoviles
             btnGuardar.Visible = false;
         }
 
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var idAuto = lblAutomovil.Text;
+                var autoEliminado = BLLAutomovil.EliminarAutomovil(idAuto);
+                LimpiarFormulario();
+                Response.Redirect("ListaAutomoviles.aspx");
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), $"Mensaje de error",
+                    "alert(Se registró un error al realizar la operación " + ex.Message + ");", true);
+            }
+        }
     }
 }

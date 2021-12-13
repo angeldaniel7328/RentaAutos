@@ -30,7 +30,7 @@ namespace Presentation.Rentas
 
         private void CargarFormulario(VORentaExtendida renta)
         {
-            lblIdRenta.Text = renta.IdAutomovil.ToString();
+            lblIdRenta.Text = renta.IdRenta.ToString();
             lblFechaHora.Text = renta.FechaHora.ToString();
             lblCuotaTotal.Text = renta.CuotaTotal.ToString();
             lblPlazo.Text = renta.Plazo.ToString() + " días";

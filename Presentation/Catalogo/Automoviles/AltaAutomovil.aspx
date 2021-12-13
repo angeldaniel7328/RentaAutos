@@ -37,6 +37,8 @@
             </div>
         </div>
 
+        <textarea id="TextArea1" cols="20" rows="2"></textarea>
+
         <div class="row form-group">
             <label for="<%=txtCuota.ClientID%>">Cuota:</label>
             <asp:TextBox ID="txtCuota" runat="server" CssClass="form-control" placeholder="0.00"></asp:TextBox>
@@ -60,12 +62,13 @@
         <div class="row form-group">
             <div class="col-md-3" style="text-align:center;">
                 <label for="<%=subirImagen.ClientID%>">Foto:</label>
-                    <asp:Image ID="imgFotoAutomovil" Width="200" Height="200" runat="server"></asp:Image>
+                    <asp:Image ID="imgFotoCliente" Width="200" Height="200" runat="server"></asp:Image>
                 <label id="lblUrlFoto" runat="server"></label>
             </div>
         </div>
         <div class="row form-group">
             <asp:Button ID="btnGuardar" ValidationGroup="Guardar" runat="server" Text="Guardar" CssClass="btn btn-success" Visible="false" OnClick="btnGuardar_Click"></asp:Button>
         </div>
+
     </div>
 </asp:Content>

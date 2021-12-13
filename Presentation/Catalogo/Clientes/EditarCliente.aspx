@@ -65,7 +65,7 @@
                 <asp:Button ID="btnGuardar" ValidationGroup="Guardar" runat="server" Text="Guardar" CssClass="btn btn-success" OnClick="btnGuardar_Click" />
             </div>
             <div class="col-md-2">
-                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" />
+                <asp:Button ID="btnEliminar" ValidationGroup="Eliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" />
             </div>
         </div>
     </div>
