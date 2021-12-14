@@ -40,7 +40,7 @@ namespace Presentation.Rentas
                     Plazo = diferencia,
                     CuotaTotal = double.Parse(txtCuota.Text),
                     IdAutomovil = int.Parse(ddlAutomovil.SelectedValue),
-                    IdCliente = int.Parse(ddlAutomovil.SelectedValue)
+                    IdCliente = int.Parse(ddlCliente.SelectedValue)
                 };
                 BLLRenta.InsertarRenta(renta);
                 LimpiarFormulario();

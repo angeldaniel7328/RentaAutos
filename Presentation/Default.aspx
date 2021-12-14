@@ -4,7 +4,7 @@
 
     <div class="jumbotron">
         <h1>Renta de automoviles</h1>
-        <h2 class="lead">Caso práctico</h2>
+        <h2 class="lead">Caso pr&aacute;ctico</h2>
     </div>
 
     <div>
@@ -14,9 +14,9 @@
     <div class="row">
         <div class="col-md-4">
             <h3>Equipo 10</h3>
-            <h5>Angel Daniel Lopez Vazquez</h5>
-            <h5>Abinadad Morales Montan</h5>
-            <h5>Marco Antonio Ramirez Valencia</h5>
+            <h4>Angel Daniel Lopez Vazquez</h4>
+            <h4>Abinadad Morales Montan</h4>
+            <h4>Marco Antonio Ramirez Valencia</h4>
         </div>
     </div>
 </asp:Content>
