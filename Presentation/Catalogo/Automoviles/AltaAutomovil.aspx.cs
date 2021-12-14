@@ -25,7 +25,6 @@ namespace Presentation.Catalogo.Automoviles
                     Marca = txtMarca.Text,
                     Cuota = double.Parse(txtCuota.Text),
                     UrlFoto = lblUrlFoto.InnerText,
-                    Disponibilidad = true
                 };
                 BLLAutomovil.InsertarAutomovil(automovil);
                 LimpiarFormulario();

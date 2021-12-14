@@ -123,13 +123,13 @@ namespace Presentation.Catalogo.Automoviles
         protected global::System.Web.UI.WebControls.Button btnSubirImagen;
 
         /// <summary>
-        /// Control imgFotoCliente.
+        /// Control imgFotoAutomovil.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgFotoCliente;
+        protected global::System.Web.UI.WebControls.Image imgFotoAutomovil;
 
         /// <summary>
         /// Control lblUrlFoto.
