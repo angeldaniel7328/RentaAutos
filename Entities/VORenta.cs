@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Entities
@@ -24,10 +25,18 @@ namespace Entities
             IdCliente = (int?)registro["IdCliente"];
         }
 
-        public VORenta()
+        public VORenta(Dictionary<string, object> registro)
         {
-
+            IdRenta = (int)registro["IdRenta"];
+            FechaHora = (DateTime?)registro["FechaHora"];
+            Completada = (bool?)registro["Completada"];
+            Plazo = (int?)registro["Plazo"];
+            CuotaTotal = double.Parse(registro["CuotaTotal"].ToString());
+            IdAutomovil = (int?)registro["IdAutomovil"];
+            IdCliente = (int?)registro["IdCliente"];
         }
+
+        public VORenta() { }
 
     }
 
@@ -51,9 +60,20 @@ namespace Entities
             UrlFotoCliente = (string)registro["UrlFotoCliente"];
         }
 
-        public VORentaExtendida()
+        public VORentaExtendida(Dictionary<string, object> registro)
         {
-
+            IdRenta = (int)registro["IdRenta"];
+            FechaHora = (DateTime?)registro["FechaHora"];
+            Completada = (bool?)registro["Completada"];
+            IdAutomovil = (int?)registro["IdAutomovil"];
+            IdCliente = (int?)registro["IdCliente"];
+            NombreAutomovil = (string)registro["NombreAutomovil"];
+            UrlFotoAutomovil = (string)registro["UrlFotoAutomovil"];
+            NombreCliente = (string)registro["NombreCliente"];
+            UrlFotoCliente = (string)registro["UrlFotoCliente"];
         }
+
+        public VORentaExtendida() { }
+
     }
 }

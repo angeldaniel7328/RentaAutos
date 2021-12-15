@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Entities
@@ -24,9 +25,17 @@ namespace Entities
             UrlFoto = (string)registro["UrlFoto"];
         }
 
-        public VOAutomovil()
+        public VOAutomovil(Dictionary<string, object> registro)
         {
-
+            IdAutomovil = (int)registro["IdAutomovil"];
+            Matricula = (string)registro["Matricula"];
+            Modelo = (string)registro["Modelo"];
+            Marca = (string)registro["Marca"];
+            Cuota = double.Parse(registro["Cuota"].ToString());
+            Disponibilidad = bool.Parse(registro["Disponibilidad"].ToString());
+            UrlFoto = (string)registro["UrlFoto"];
         }
+
+        public VOAutomovil() { }
     }
 }

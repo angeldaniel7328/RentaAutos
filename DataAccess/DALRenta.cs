@@ -34,16 +34,7 @@ namespace DataAccess
                 List<Parametro> parametros = new List<Parametro>();
                 parametros.Add(new Parametro("@IdRenta", SqlDbType.Int, idRenta));
                 Dictionary<string, object> datos = ManejadorConsultas.EjecutarLectura("SP_ConsultarRentaPorId", parametros);
-                renta = new VORenta()
-                {
-                    IdRenta = (int)datos["IdRenta"],
-                    FechaHora = (DateTime?)datos["FechaHora"],
-                    Completada = (bool?)datos["Completada"],
-                    Plazo = (int?)datos["Plazo"],
-                    CuotaTotal = double.Parse(datos["CuotaTotal"].ToString()),
-                    IdAutomovil = (int?)datos["IdAutomovil"],
-                    IdCliente = (int?)datos["IdCliente"]
-                };
+                renta = new VORenta(datos);
             }
             catch (Exception)
             {
@@ -92,20 +83,7 @@ namespace DataAccess
                 List<Parametro> parametros = new List<Parametro>();
                 parametros.Add(new Parametro("@IdRenta", SqlDbType.Int, idRenta));
                 Dictionary<string, object> datos = ManejadorConsultas.EjecutarLectura("SP_ConsultarRentaExtendidaPorId", parametros);
-                renta = new VORentaExtendida()
-                {
-                    IdRenta = (int)datos["IdRenta"],
-                    FechaHora = (DateTime?)datos["FechaHora"],
-                    Completada = (bool?)datos["Completada"],
-                    Plazo = (int?)datos["Plazo"],
-                    CuotaTotal = double.Parse(datos["CuotaTotal"].ToString()),
-                    NombreAutomovil = (string)datos["NombreAutomovil"],
-                    UrlFotoAutomovil = (string)datos["UrlFotoAutomovil"],
-                    NombreCliente = (string)datos["NombreCliente"],
-                    UrlFotoCliente = (string)datos["UrlFotoCliente"],
-                    IdAutomovil = (int?)datos["IdAutomovil"],
-                    IdCliente = (int?)datos["IdCliente"]
-                };
+                renta = new VORentaExtendida(datos);
             }
             catch (Exception)
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Entities
@@ -22,9 +23,16 @@ namespace Entities
             UrlFoto = (string)registro["UrlFoto"];
         }
 
-        public VOCliente()
+        public VOCliente(Dictionary<string, object> registro)
         {
-
+            IdCliente = (int)registro["IdCliente"];
+            Nombre = (string)registro["Nombre"];
+            Telefono = (string)registro["Telefono"];
+            Direccion = (string)registro["Direccion"];
+            Correo = (string)registro["Correo"];
+            UrlFoto = (string)registro["UrlFoto"];
         }
+
+        public VOCliente() { }
     }
 }

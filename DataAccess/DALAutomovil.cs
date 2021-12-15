@@ -34,16 +34,7 @@ namespace DataAccess
                 List<Parametro> parametros = new List<Parametro>();
                 parametros.Add(new Parametro("@IdAutomovil", SqlDbType.Int, idAutomovil));
                 Dictionary<string, object> datos = ManejadorConsultas.EjecutarLectura("SP_ConsultarAutomovilPorId", parametros);
-                automovil = new VOAutomovil()
-                {
-                    IdAutomovil = (int)datos["IdAutomovil"],
-                    Matricula = (string)datos["Matricula"],
-                    Modelo = (string)datos["Modelo"],
-                    Marca = (string)datos["Marca"],
-                    Cuota = double.Parse(datos["Cuota"].ToString()),
-                    Disponibilidad = (bool)datos["Disponibilidad"],
-                    UrlFoto = (string)datos["UrlFoto"]
-                };
+                automovil = new VOAutomovil(datos);
             }
             catch (Exception)
             {

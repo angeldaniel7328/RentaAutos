@@ -34,15 +34,7 @@ namespace DataAccess
                 List<Parametro> parametros = new List<Parametro>();
                 parametros.Add(new Parametro("@IdCliente", SqlDbType.Int, idCliente));
                 Dictionary<string, object> datos = ManejadorConsultas.EjecutarLectura("SP_ConsultarClientePorId", parametros);
-                cliente = new VOCliente()
-                {
-                    IdCliente = (int)datos["IdCliente"],
-                    Nombre = (string)datos["Nombre"],
-                    Telefono = (string)datos["Telefono"],
-                    Direccion = (string)datos["Direccion"],
-                    Correo = (string)datos["Correo"],
-                    UrlFoto = (string)datos["UrlFoto"]
-                };
+                cliente = new VOCliente(datos);
             }
             catch (Exception)
             {
