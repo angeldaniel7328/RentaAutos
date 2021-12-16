@@ -49,24 +49,16 @@ namespace Entities
 
         public VORentaExtendida(DataRow registro) : base(registro)
         {
-            IdRenta = (int)registro["IdRenta"];
-            FechaHora = (DateTime?)registro["FechaHora"];
-            Completada = (bool?)registro["Completada"];
-            IdAutomovil = (int?)registro["IdAutomovil"];
-            IdCliente = (int?)registro["IdCliente"];
+            
             NombreAutomovil = (string)registro["NombreAutomovil"];
             UrlFotoAutomovil = (string)registro["UrlFotoAutomovil"];
             NombreCliente = (string)registro["NombreCliente"];
             UrlFotoCliente = (string)registro["UrlFotoCliente"];
         }
 
-        public VORentaExtendida(Dictionary<string, object> registro)
+        public VORentaExtendida(Dictionary<string, object> registro) : base(registro)
         {
-            IdRenta = (int)registro["IdRenta"];
-            FechaHora = (DateTime?)registro["FechaHora"];
-            Completada = (bool?)registro["Completada"];
-            IdAutomovil = (int?)registro["IdAutomovil"];
-            IdCliente = (int?)registro["IdCliente"];
+            
             NombreAutomovil = (string)registro["NombreAutomovil"];
             UrlFotoAutomovil = (string)registro["UrlFotoAutomovil"];
             NombreCliente = (string)registro["NombreCliente"];
