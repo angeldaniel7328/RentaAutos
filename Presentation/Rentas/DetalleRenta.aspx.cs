@@ -33,7 +33,7 @@ namespace Presentation.Rentas
             lblIdRenta.Text = renta.IdRenta.ToString();
             lblFechaHora.Text = renta.FechaHora.ToString();
             lblCuotaTotal.Text = renta.CuotaTotal.ToString();
-            lblPlazo.Text = renta.Plazo.ToString() + " días";
+            lblPlazo.Text = renta.Plazo.ToString() + " día(s)";
             lblNombreCliente.Text = renta.NombreCliente;
             imgFotoCliente.ImageUrl = renta.UrlFotoCliente;
             lblAutomovil.Text = renta.NombreAutomovil;

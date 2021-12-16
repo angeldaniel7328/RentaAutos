@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Presentation
+namespace Presentation.Rentas
 {
 
 
-    public partial class _Default
+    public partial class AutomovilesNoDisponibles
     {
     }
 }

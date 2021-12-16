@@ -13,8 +13,15 @@ namespace Presentation.Rentas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            var automoviles = BLLAutomovil.ConsultarAutomoviles(true);
+            if (automoviles.Count== 0)
+            {
+                Response.Redirect("AutomovilesNoDisponibles.aspx");
+            }
             if (!IsPostBack)
+            {
                 CargarGrid();
+            }     
         }
 
         private void CargarGrid()

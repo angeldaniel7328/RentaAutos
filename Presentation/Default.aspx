@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Presentation._Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Presentation._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -8,7 +8,7 @@
     </div>
 
     <div>
-        <asp:Image ID="Portada" runat="server" ImageUrl="~/imagen_central.jpg" Height="628px" Width="1166px"  />
+        <asp:Image runat="server" ImageUrl="https://www.lbwaccountants.co.uk/images/news/91/2e1ax_timeless_entry_company-cars-allowance-wirral.jpg" Height="628px" Width="1166px"  />
     </div>
     
     <div class="row">
